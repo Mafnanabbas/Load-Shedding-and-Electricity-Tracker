@@ -7,3 +7,5 @@ def welcome(request):
 
 def login_view(request):
     return render(request, 'login.html')
+def register(request):
+    return render(request, 'register.html')

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PowerTrack | Load Shedding & Electricity Tracker</title>
+    <style>
+        /* Base Styles & Reset */
+        :root {
+            --primary: #0f172a;
+            --secondary: #2563eb;
+            --secondary-hover: #1d4ed8;
+            --accent: #e11d48;
+            --accent-hover: #be123c;
+            --text-main: #334155;
+            --text-light: #64748b;
+            --bg-light: #f8fafc;
+            --white: #ffffff;
+        }
+        
+        body { font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: var(--bg-light); color: var(--text-main); line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; }
+        h1, h2, h3 { color: var(--primary); margin-top: 0; }
+        
+        /* Navigation */
+        header { background: var(--primary); color: var(--white); padding: 1.2rem 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
+        /* FIXED: Explicitly forced the header h1 to be white to override the global h1 dark color */
+        header h1 { color: var(--white); margin: 0; font-size: 1.75rem; letter-spacing: -0.5px; display: flex; align-items: center; gap: 10px; }
+        .nav-links a { text-decoration: none; padding: 0.6rem 1.2rem; margin-left: 15px; border-radius: 6px; font-weight: 600; transition: all 0.3s ease; font-size: 0.95rem; }
+        .btn-login { color: var(--white); border: 1px solid rgba(255,255,255,0.3); }
+        .btn-login:hover { background: rgba(255,255,255,0.1); }
+        .btn-register { background: var(--accent); color: var(--white); border: 1px solid var(--accent); }
+        .btn-register:hover { background: var(--accent-hover); }
+        
+        /* Hero Section */
+        .hero { text-align: center; padding: 6rem 2rem; background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%); border-bottom: 1px solid #e2e8f0; }
+        .hero h2 { font-size: 3rem; margin-bottom: 1.5rem; letter-spacing: -1px; line-height: 1.2; }
+        .hero p { font-size: 1.25rem; color: var(--text-light); max-width: 700px; margin: 0 auto 2.5rem auto; }
+        .hero .cta-btn { padding: 0.875rem 2.5rem; background: var(--secondary); color: var(--white); text-decoration: none; font-size: 1.1rem; border-radius: 8px; font-weight: 600; box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2); transition: background 0.3s ease; display: inline-block; }
+        .hero .cta-btn:hover { background: var(--secondary-hover); transform: translateY(-2px); }
+        
+        /* Features Section */
+        .features-wrapper { max-width: 1200px; margin: 0 auto; padding: 5rem 2rem; flex: 1; }
+        .section-title { text-align: center; margin-bottom: 3rem; font-size: 2.25rem; }
+        .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+        .card { background: var(--white); padding: 2.5rem 2rem; border-radius: 12px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025); text-align: left; transition: transform 0.3s ease, box-shadow 0.3s ease; border: 1px solid #f1f5f9; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
+        .card h3 { font-size: 1.25rem; margin-bottom: 1rem; border-bottom: 2px solid var(--secondary); padding-bottom: 0.5rem; display: inline-block; }
+        .card p { color: var(--text-light); font-size: 0.95rem; margin: 0; }
+        
+        /* Footer */
+        footer { background: var(--primary); color: #94a3b8; text-align: center; padding: 3rem 2rem; margin-top: auto; border-top: 4px solid var(--secondary); }
+        footer p { margin: 0.5rem 0; font-size: 0.95rem; }
+        footer .highlight { color: var(--white); font-weight: 600; }
+        
+        /* Responsive */
+        @media(max-width: 768px) {
+            .hero h2 { font-size: 2.25rem; }
+            header { flex-direction: column; gap: 15px; }
+            .nav-links { display: flex; width: 100%; justify-content: center; }
+            .nav-links a { margin: 0 5px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>⚡ PowerTrack</h1>
+        <div class="nav-links">
+            <a href="{% url 'login' %}" class="btn-login">Log In</a>
+            <a href="{% url 'register' %}" class="btn-register">Register</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h2>Intelligent Grid Monitoring for Your Community</h2>
+        <p>Your centralized platform for real-time load-shedding schedules, power quality monitoring, and proactive anomaly alerts. Plan your day and protect your appliances.</p>
+        <a href="{% url 'login' %}" class="cta-btn">Check Area Status</a>
+    </section>
+
+    <div class="features-wrapper">
+        <h2 class="section-title">System Capabilities</h2>
+        <section class="features">
+            <div class="card">
+                <h3>Area-Wise Schedules</h3>
+                <p>Access accurate, updated load-shedding timings tailored specifically to your neighborhood's substation and grid.</p>
+            </div>
+            <div class="card">
+                <h3>Voltage & Phase Alerts</h3>
+                <p>Receive instant notifications for over-voltage, under-voltage, and dangerous phase shifts to proactively disconnect sensitive electronics.</p>
+            </div>
+            <div class="card">
+                <h3>Live Outage Reporting</h3>
+                <p>View current electricity statuses and submit crowdsourced outage reports across the city in real-time to keep the community informed.</p>
+            </div>
+            <div class="card">
+                <h3>Historical Analytics</h3>
+                <p>Generate comprehensive graphical reports on total outage durations, voltage fluctuations, and long-term electricity availability.</p>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>Project: <span class="highlight">Load Shedding and Electricity Tracker</span></p>
+        <!-- Retained developer credits for your specific SE project team -->
+        <p>Developed by <span class="highlight">Afnan, Naveera, and Eman</span></p>
+        <p>Course: <span class="highlight">Software Engineering Lab (CMPE-311L)</span></p>
+    </footer>
+
+</body>
+</html>

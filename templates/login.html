@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In - PowerTrack</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8f9fa; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .auth-box { background: white; padding: 2.5rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); width: 100%; max-width: 400px; text-align: center; }
+        .auth-box h2 { color: #2c3e50; margin-bottom: 1.5rem; margin-top: 0; }
+        input { width: 90%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
+        .btn { background: #3498db; color: white; border: none; padding: 12px; border-radius: 5px; cursor: pointer; font-weight: bold; width: 90%; margin-top: 10px; }
+        .btn:hover { background: #2980b9; }
+        a { color: #3498db; text-decoration: none; font-size: 0.9rem; display: block; margin-top: 15px; }
+        .register-link { margin-top: 20px; font-size: 0.9rem; color: #666; }
+    </style>
+</head>
+<body>
+
+    <div class="auth-box">
+        <h2>Welcome Back</h2>
+        <!-- Form submits via POST to securely transmit credentials -->
+        <form method="POST" action="">
+            <!-- Django's mandatory security token for form submissions -->
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Username or Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit" class="btn">Log In</button>
+        </form>
+        
+        <div class="register-link">
+            Don't have an account? <a href="{% url 'register' %}" style="display:inline; margin:0;">Register here</a>
+        </div>
+        <a href="{% url 'welcome' %}">← Back to Home</a>
+    </div>
+
+</body>
+</html>
