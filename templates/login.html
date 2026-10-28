@@ -19,7 +19,13 @@
 
     <div class="auth-box">
         <h2>Welcome Back</h2>
-        <!-- Form submits via POST to securely transmit credentials -->
+        {% if messages %}
+            <ul style="color: #e74c3c; list-style-type: none; padding: 0; font-size: 0.9rem; margin-bottom: 15px;">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
         <form method="POST" action="">
             <!-- Django's mandatory security token for form submissions -->
             {% csrf_token %}
